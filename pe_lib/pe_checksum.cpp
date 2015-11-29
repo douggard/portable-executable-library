@@ -32,18 +32,30 @@ uint32_t calculate_checksum(std::istream& file)
 
 		//"CheckSum" field position in optional PE headers - it's always 64 for PE and PE+
 		static const unsigned long checksum_pos_in_optional_headers = 64;
+		static const unsigned long dw_size = 4;
 		//Calculate real PE headers "CheckSum" field position
 		//Sum is safe here
 		unsigned long pe_checksum_pos = header.e_lfanew + sizeof(image_file_header) + sizeof(uint32_t) + checksum_pos_in_optional_headers;
 
 		//Calculate checksum for each byte of file
 		std::streamoff filesize = pe_utils::get_file_size(file);
-		for(long long i = 0; i < filesize; i += 4)
+		for(long long i = 0; i < filesize; i += dw_size)
 		{
 			unsigned long dw = 0;
+            char* pdw = reinterpret_cast<char*>(&dw);
+            char c;
 
 			//Read DWORD from file
-			file.read(reinterpret_cast<char*>(&dw), sizeof(unsigned long));
+			file.read(pdw, dw_size);
+            if (!pe_utils::is_little_endian()) {
+                c = pdw[0];
+                pdw[0] = pdw[3];
+                pdw[3] = c;
+
+                c = pdw[1];
+                pdw[1] = pdw[2];
+                pdw[2] = c;
+            }
 			//Skip "CheckSum" DWORD
 			if(i == pe_checksum_pos)
 				continue;

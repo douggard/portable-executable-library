@@ -1,19 +1,54 @@
-# portable-executable-library
-Automatically exported from code.google.com/p/portable-executable-library
+libpebliss
+---
+Evolved from [portable-executable-library](https://code.google.com/p/portable-executable-library)
 
-**Author:** rukaimi (kaimi.ru)
+**Original Author:** rukaimi (kaimi.ru)
 
-Just forked this to preserve it from the Google Code shutdown. 
+Thanks to his really great work!
 
-Didn't see a license, so if the author or any copyright holders want me to pull it down, let me know. 
 
-I make no claims to rights over this project. Awesome library though.
+### PE Bliss
+Cross-Platform [PE](https://en.wikipedia.org/wiki/Portable_Executable)(Portable Executable) Manipulating Library
+* C++
+* Compatibility
+  * Little-endian systems only, might not support big-endian ones.
+  * Windows, tested on Visual Studio 2013 Express
+  * Linux, tested on GCC 4.8.4
+  * OSX, tested on LLVM 7.0.0
 
-#PE Bliss
+* Useful usage samples and well unit-tested.
 
-Cross-Platform Portable Executable C++ Library
-Compatible with Windows and Linux (tested on MSVC++ 2008, 2010, GCC 4.4 on Linux). Currently tested on little-endian systems only and might not support big-endian ones.
+### Features
 
-Library has many usage samples and is well unit-tested.
+* Read 32- and 64-bit PE files (PE, PE+) for Windows, work similar with both formats
+* Create PE/PE+ binaries from scratch
+* Rebuild 32- and 64-bit PE files
+* Work with directories and headers
+* Convert addresses
+* Read and write PE sections
+* Read and write imports
+* Read and write exports (forwarders supported)
+* Read and write relocations
+* Read and write resources
+* Read and write TLS (including callbacks and raw data)
+* Read and write image config (including SE Handlers and Lock Prefix addresses)
+* Read basic .NET information
+* Read and write bound imports
+* Read exception directory (PE+ only)
+* Read debug directory and extended debug information
+* Calculate entropy
+* Change file alignment
+* Change base address
+* Work with DOS Stub and Rich overlay
+* High-level resource reading: bitmaps, icons, cursors, version info, string and message tables
+* High-level resource editing: bitmaps, icons, cursors, version info
 
-Library is free to use in both commertial and non-commertial projects. You can also modify and redistribute it. If you are using it, please, do not forget to specify the name or other copyright of PE Bliss somewhere in the description of your project.
+Library doesn't use WinAPI and doesn't execute PE files, so it's safe to use it with suspicious binaries.
+
+### TODO
+
+* Unit-test
+  * test on big-endian
+
+* use [CMake](http://cmake.org) instead ???
+

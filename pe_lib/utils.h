@@ -66,6 +66,8 @@ public:
 
 	//Returns stream size
 	static std::streamoff get_file_size(std::istream& file);
+
+	static bool is_little_endian();
 	
 #ifndef PE_BLISS_WINDOWS
 public:
@@ -77,6 +79,7 @@ private:
 	pe_utils();
 	pe_utils(pe_utils&);
 	pe_utils& operator=(const pe_utils&);
+
 };
 
 //Windows GUID comparison

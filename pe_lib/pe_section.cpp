@@ -1,6 +1,7 @@
 #include <string.h>
 #include "utils.h"
 #include "pe_section.h"
+#include <algorithm>
 
 namespace pe_bliss
 {

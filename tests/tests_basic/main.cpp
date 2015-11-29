@@ -164,8 +164,8 @@ int main(int argc, char* argv[])
 
 	PE_TEST(image->strip_data_directories(0, false) == 0x10 - 3, "Data directories strip test 1", test_level_normal);
 	PE_TEST(image->get_number_of_rvas_and_sizes() == 0x10 - 3, "Data directories strip test 2", test_level_normal);
-	PE_TEST_EXPECT_EXCEPTION(image->get_directory_rva(pe_win::image_directory_entry_com_descriptor) == 0, pe_exception::directory_does_not_exist, "Directory RVA test 4", test_level_normal);
-	PE_TEST_EXPECT_EXCEPTION(image->get_directory_size(pe_win::image_directory_entry_com_descriptor) == 0, pe_exception::directory_does_not_exist, "Directory size test 4", test_level_normal);
+	PE_TEST_EXPECT_EXCEPTION(image->get_directory_rva(pe_win::image_directory_entry_com_descriptor), pe_exception::directory_does_not_exist, "Directory RVA test 4", test_level_normal);
+	PE_TEST_EXPECT_EXCEPTION(image->get_directory_size(pe_win::image_directory_entry_com_descriptor), pe_exception::directory_does_not_exist, "Directory size test 4", test_level_normal);
 	
 	if(image->get_pe_type() == pe_type_32)
 	{

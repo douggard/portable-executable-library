@@ -1,0 +1,13 @@
+*.o
+*.a
+*.swp
+samples/out/
+tests/bin/
+
+
+*.exe
+Debug/
+Release/
+*.sdf
+*.opensdf
+*.suo

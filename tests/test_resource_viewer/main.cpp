@@ -29,10 +29,10 @@ int main(int argc, char* argv[])
 	PE_TEST_EXPECT_EXCEPTION(res.get_language_count(L"NoName", 123) == 0, pe_exception::resource_directory_entry_not_found, "Resource viewer test 3", test_level_normal);
 	PE_TEST_EXPECT_EXCEPTION(res.get_language_count(pe_resource_viewer::resource_accelerator, 123), pe_exception::resource_directory_entry_not_found, "Resource viewer test 4", test_level_normal);
 	
-	PE_TEST_EXPECT_EXCEPTION(res.get_language_count(pe_resource_viewer::resource_cursor, 5) == 0, pe_exception::resource_directory_entry_not_found, "Resource viewer test 5", test_level_normal);
+	PE_TEST_EXPECT_EXCEPTION(res.get_language_count(pe_resource_viewer::resource_cursor, 5), pe_exception::resource_directory_entry_not_found, "Resource viewer test 5", test_level_normal);
 	PE_TEST(res.get_language_count(pe_resource_viewer::resource_cursor, 2) == 1, "Resource viewer test 6", test_level_normal);
 
-	PE_TEST_EXPECT_EXCEPTION(res.get_language_count(pe_resource_viewer::resource_cursor, 5) == 0, pe_exception::resource_directory_entry_not_found, "Resource viewer test 7", test_level_normal);
+	PE_TEST_EXPECT_EXCEPTION(res.get_language_count(pe_resource_viewer::resource_cursor, 5), pe_exception::resource_directory_entry_not_found, "Resource viewer test 7", test_level_normal);
 	PE_TEST(res.get_language_count(pe_resource_viewer::resource_cursor, 2) == 1, "Resource viewer test 8", test_level_normal);
 	
 	PE_TEST(res.get_language_count(pe_resource_viewer::resource_icon_group, L"MAIN_ICON") == 1, "Resource viewer test 9", test_level_normal);

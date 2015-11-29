@@ -22,6 +22,11 @@ std::streamoff pe_utils::get_file_size(std::istream& file)
 	return filesize;
 }
 
+bool pe_utils::is_little_endian() {
+    uint16_t i = 1;
+    return *(char*)&i;
+}
+
 #ifndef PE_BLISS_WINDOWS
 const u16string pe_utils::to_ucs2(const std::wstring& str)
 {
@@ -31,7 +36,7 @@ const u16string pe_utils::to_ucs2(const std::wstring& str)
 
 	ret.resize(str.length());
 
-	iconv_t conv = iconv_open("UCS-2", "WCHAR_T");
+	iconv_t conv = iconv_open("UCS-2LE", "UCS-4LE");
 	if(conv == reinterpret_cast<iconv_t>(-1))
 		throw pe_exception("Error opening iconv", pe_exception::encoding_convertion_error);
 
@@ -57,7 +62,7 @@ const std::wstring pe_utils::from_ucs2(const u16string& str)
 
 	ret.resize(str.length());
 
-	iconv_t conv = iconv_open("WCHAR_T", "UCS-2");
+	iconv_t conv = iconv_open("UCS-4LE", "UCS-2LE");
 	if(conv == reinterpret_cast<iconv_t>(-1))
 		throw pe_exception("Error opening iconv", pe_exception::encoding_convertion_error);
 
